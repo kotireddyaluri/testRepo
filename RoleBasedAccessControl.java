@@ -231,6 +231,12 @@ public class RoleBasedAccessControl extends GoatHillsFinancial
 				else
 				{
 					// ***************CODE HERE*************************
+				if(!isAuthorized(s, getUserId(s), requestedActionName)) {
+					throw new UnauthorizedException();
+				} 
+				if(!action.isAuthorizedForEmployee(s, getUserId(s), s.getParser().getIntParameter(RoleBasedAccessControl.EMPLOYEE_ID, 0))) { 
+					throw new UnauthorizedException();
+				}
 
 					// *************************************************
 					if (action.isAuthenticated(s))
